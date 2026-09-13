@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import Technologies from "./components/Technologies/Technologies";
 import YourStack from "./components/Stack/YourStack";
-import Footer from "./components/Footer/Footer";
 
 function App() {
   // All technologies
@@ -151,10 +150,6 @@ function App() {
         </section>
 
       </main>
-
-      {/* Footer */}
-      <Footer />
-
     </div>
   );
 }
