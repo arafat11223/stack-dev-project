@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Technology } from "./types/technology";
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
+import Technologies from "./components/Technologies/Technologies";
 
 function App() {
   // Store technologies from data.json
@@ -44,11 +45,7 @@ function App() {
         <Hero />
 
         {/* Technologies section will be added in Step 7 */}
-        <section>
-          <p className="text-center py-10">
-            Technologies section coming soon...
-          </p>
-        </section>
+        <Technologies technologies={technologies} />
 
       </main>
 

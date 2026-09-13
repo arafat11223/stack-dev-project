@@ -10,19 +10,19 @@ const Hero = () => {
                     {/* Left Content */}
                     <div className="text-center lg:text-left">
 
-                      
+
 
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
-                            Build Your
-                            <span className="gradient-text block">
+                            Build Your Ideal
+                            <span className="gradient-text block text-5xl sm:text-6xl lg:text-7xl">
                                 Developer Stack
                             </span>
                         </h1>
 
                         <p className="mt-6 text-gray-600 text-base sm:text-lg leading-8 max-w-xl mx-auto lg:mx-0">
-                            Discover the technologies you need to build modern,
-                            scalable, and powerful web applications. Explore,
-                            compare, and create your own developer stack.
+                            Explore frontend, backend, database, and tooling options,
+                            compare them side by side, and put together the stack that fits your
+                            next project.
                         </p>
 
                         {/* Buttons */}
