@@ -7,20 +7,16 @@ import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import Technologies from "./components/Technologies/Technologies";
 import YourStack from "./components/Stack/YourStack";
+import Footer from "./components/Footer/Footer";
 
 function App() {
-  // All technologies
   const [technologies, setTechnologies] = useState<Technology[]>([]);
-
-  // Loading state
   const [loading, setLoading] = useState(true);
-
-  // Selected technologies
   const [selectedTechnologies, setSelectedTechnologies] = useState<
     Technology[]
   >([]);
 
-  // Fetch technologies from JSON
+  // Load technology data from data.json
   useEffect(() => {
     fetch("/data.json")
       .then((res) => res.json())
@@ -30,35 +26,30 @@ function App() {
       })
       .catch((error) => {
         console.error("Failed to load technologies:", error);
+
         toast.error("Failed to load technologies");
+
         setLoading(false);
       });
   }, []);
 
-  // Add technology
+  // Add technology to stack
   const handleAddToStack = (technology: Technology) => {
     const alreadyAdded = selectedTechnologies.some(
       (item) => item.id === technology.id
     );
 
-    // Duplicate check
     if (alreadyAdded) {
-      toast.warning(
-        `${technology.name} is already in your stack`
-      );
+      toast.warning(`${technology.name} is already in your stack`);
       return;
     }
 
-    // Add technology
     setSelectedTechnologies((previous) => [
       ...previous,
       technology,
     ]);
 
-    // Success toast
-    toast.success(
-      `${technology.name} added to your stack`
-    );
+    toast.success(`${technology.name} added to your stack`);
   };
 
   // Remove one technology
@@ -72,9 +63,7 @@ function App() {
     );
 
     if (technology) {
-      toast.info(
-        `${technology.name} removed from your stack`
-      );
+      toast.info(`${technology.name} removed from your stack`);
     }
   };
 
@@ -86,9 +75,7 @@ function App() {
 
     setSelectedTechnologies([]);
 
-    toast.success(
-      "All technologies removed from your stack"
-    );
+    toast.success("All technologies removed from your stack");
   };
 
   // Loading state
@@ -104,8 +91,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
-
-      {/* Toast Container */}
+      {/* Toast Notifications */}
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -117,8 +103,7 @@ function App() {
       <Navbar />
 
       <main>
-
-        {/* Hero */}
+        {/* Hero Section */}
         <Hero />
 
         {/* Technologies + Your Stack */}
@@ -127,29 +112,25 @@ function App() {
           className="py-16 bg-gray-50"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
             <div className="grid lg:grid-cols-[1fr_320px] gap-6">
-
-              {/* Technologies */}
               <Technologies
                 technologies={technologies}
                 onAddToStack={handleAddToStack}
                 selectedTechnologies={selectedTechnologies}
               />
 
-              {/* Your Stack */}
               <YourStack
                 selectedTechnologies={selectedTechnologies}
                 onRemove={handleRemoveFromStack}
                 onRemoveAll={handleRemoveAll}
               />
-
             </div>
-
           </div>
         </section>
-
       </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
