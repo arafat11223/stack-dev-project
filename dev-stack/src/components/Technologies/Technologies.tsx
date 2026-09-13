@@ -2,41 +2,51 @@ import type { Technology } from "../../types/technology";
 import TechnologyCard from "./TechnologyCard";
 
 interface TechnologiesProps {
-    technologies: Technology[];
+  technologies: Technology[];
+  onAddToStack: (technology: Technology) => void;
+  selectedTechnologies: Technology[];
 }
 
-const Technologies = ({ technologies }: TechnologiesProps) => {
-    return (
-        <section id="technologies" className="py-16 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+const Technologies = ({
+  technologies,
+  onAddToStack,
+  selectedTechnologies,
+}: TechnologiesProps) => {
+  return (
+    <div>
 
-                {/* Section Header */}
-                <div className="text-left mb-10">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">
-                        Explore the{" "}
-                        <span className="gradient-text">
-                            Technologies
-                        </span>
-                    </h2>
+      {/* Section Header */}
+      <div className="text-center lg:text-left mb-8">
+        <p className="text-sm font-semibold uppercase tracking-wider gradient-text">
+          Explore Technologies
+        </p>
 
-                    <p className="text-gray-600 mt-3 max-w-2xl">
-                        Pick one technology per category to build your ideal stack.
-                    </p>
-                </div>
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">
+          Build Your Developer Stack
+        </h2>
 
-                {/* Technology Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {technologies.map((technology) => (
-                        <TechnologyCard
-                            key={technology.id}
-                            technology={technology}
-                        />
-                    ))}
-                </div>
+        <p className="text-gray-600 mt-3 max-w-2xl">
+          Explore popular technologies and choose the tools
+          that fit your development journey.
+        </p>
+      </div>
 
-            </div>
-        </section>
-    );
+      {/* Technology Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {technologies.map((technology) => (
+          <TechnologyCard
+            key={technology.id}
+            technology={technology}
+            onAddToStack={onAddToStack}
+            isAdded={selectedTechnologies.some(
+              (item) => item.id === technology.id
+            )}
+          />
+        ))}
+      </div>
+
+    </div>
+  );
 };
 
 export default Technologies;
